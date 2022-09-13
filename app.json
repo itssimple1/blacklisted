@@ -1,0 +1,45 @@
+{
+  "name": "Blacklist Bot",
+  "description": "A bot to blacklist words on telegram.",
+  "keywords": [
+    "telegram",
+    "userbot",
+    "plugin",
+    "telethon",
+    "hellbot",
+    "modular",
+    "productivity"
+  ],
+  "repository": "https://github.com/The-HellBot/HellBot/",
+  "env": {
+    "API_ID": {
+      "description": "Get this value from my.telegram.org",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org",
+      "value": ""
+    },
+    "SESSION": {
+      "description": "Get this value by using repl or termux. Refer to Repo for more info.",
+      "value": ""
+    },
+    "SUDO_USERS": {
+      "description": "User id of users to use this bot."
+      "value": ""
+    },
+    "BOT_TOKEN": {
+      "description": "Make a bot from @BotFather and paste the bot token here.",
+      "value": ""
+    }
+  },
+  "addons": [{
+    "plan": "heroku-postgresql",
+    "options": {
+      "version": "12"
+    }
+  }],
+  "buildpacks": [{
+    "url": "heroku/python"
+  }]
+}
