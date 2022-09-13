@@ -5,7 +5,7 @@ import sys
 from telethon import TelegramClient, events
 
 from config import *
-from db import *
+from db import get_chat_blacklist, rm_from_blacklist, add_to_blacklist
 
 
 bot = TelegramClient(
@@ -46,6 +46,13 @@ def hell_cmd(pattern: str = None, **args):
         return func
 
     return decorator
+
+async def start_bot():
+    try:
+        await bot.start()
+        print("Bot Started !!")
+    except Exception as e:
+        print(str(e))
 
 
 @in_handler(incoming=True)
@@ -114,3 +121,14 @@ async def on_view_blacklist(event):
             )
     else:
         await event.client.send_message(event.chat_id, OUT_STR)
+
+
+bot.loop.run_until_complete(start_bot())
+
+if len(sys.argv) not in (1, 3, 4):
+    bot.disconnect()
+else:
+    try:
+        bot.run_until_disconnected()
+    except ConnectionError:
+        pass
