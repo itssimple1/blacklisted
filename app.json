@@ -20,6 +20,10 @@
       "description": "Get this value from my.telegram.org",
       "value": ""
     },
+    "HANDLER": {
+      "description": "Your command handler. Default is ' . ' (dot).",
+      "value": "."
+    },
     "SUDO_USERS": {
       "description": "User id of users to use this bot."
       "value": ""
