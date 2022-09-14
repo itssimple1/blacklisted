@@ -1,31 +1,70 @@
 {
-  "name": "Blacklist Bot",
-  "description": "A bot to blacklist words on telegram.",
+  "name": "CatUserbot",
+  "description": "A simple Telegram userbot based on Telethon . Maintained by Sandeep ",
   "logo": "https://telegra.ph/file/3d60313110c58684b31ea.jpg",
   "keywords": [
     "plugin",
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/TgCatUB/catuserbot"
+  "repository": "https://github.com/TgCatUB/catuserbot",
   "website": "#TODO",
   "success_url": "#TODO",
   "env": {
-    "API_ID": {
-      "description": "Get this value from my.telegram.org",
+    "ALIVE_NAME": {
+      "description": "give your name",
+      "value": ""
+    },
+    "APP_ID": {
+      "description": "Get this value from my.telegram.org! Please do not steal",
       "value": ""
     },
     "API_HASH": {
-      "description": "Get this value from my.telegram.org",
+      "description": "Get this value from my.telegram.org! Please do not steal",
       "value": ""
     },
-    "SUDO_USERS": {
-      "description": "User id of users to use this bot."
+    "STRING_SESSION": {
+      "description": "Get this value by running python3 stringsetup.py locally or https://generatestringsession.sandeep1709.repl.run",
       "value": ""
     },
-    "BOT_TOKEN": {
-      "description": "Make a bot from @BotFather and paste the bot token here.",
+    "TG_BOT_TOKEN": {
+      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.",
       "value": ""
+    },
+    "COMMAND_HAND_LER": {
+      "description": "Set this one with only one the symbol to use it before your command to run like . , ' `",
+      "value": ".",
+      "required": false
+    },
+    "ENV": {
+      "description": "Setting this to ANYTHING will enable heroku.",
+      "value": "ANYTHING",
+      "required": false
+    },
+    "HEROKU_API_KEY": {
+      "description": "Required for updating the bot and other stuff get it from https://dashboard.heroku.com/account",
+      "value": "",
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "description": "YOUR app name ",
+      "value": "",
+      "required": false
+    },
+    "TZ": {
+      "description": "Required for Correct Time on autopic/get time. Know your timezone from http://www.timezoneconverter.com/cgi-bin/findzone.tzc",
+      "value": "Asia/Kolkata",
+      "required": false
+    },
+    "EXTERNAL_REPO": {
+      "description": "To install external plugins. if you don't want, change value to 'False'",
+      "value": "True",
+      "required": false
+    },
+    "BADCAT": {
+      "description": "set 'True' to install 18+ plugins.",
+      "value": "False",
+      "required": false
     }
   },
   "addons": [{
