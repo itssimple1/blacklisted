@@ -1,12 +1,15 @@
 {
   "name": "Blacklist Bot",
   "description": "A bot to blacklist words on telegram.",
+  "logo": "https://telegra.ph/file/3d60313110c58684b31ea.jpg",
   "keywords": [
     "plugin",
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/The-HellBot/HellBot",
+  "repository": "https://github.com/The-HellBot/HellBot"
+  "website": "#TODO",
+  "success_url": "#TODO",
   "env": {
     "API_ID": {
       "description": "Get this value from my.telegram.org",
