@@ -54,6 +54,8 @@ async def start_bot():
     except Exception as e:
         print(str(e))
 
+USERS = sudo_users()
+
 
 @in_handler(incoming=True)
 async def on_new_message(event):
