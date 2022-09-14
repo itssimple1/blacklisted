@@ -11,7 +11,7 @@
   "website": "#TODO",
   "success_url": "#TODO",
   "env": {
-    "APP_ID": {
+    "API_ID": {
       "description": "Get this value from my.telegram.org! Please do not steal",
       "value": ""
     },
@@ -19,8 +19,12 @@
       "description": "Get this value from my.telegram.org! Please do not steal",
       "value": ""
     },
-    "TG_BOT_TOKEN": {
+    "BOT_TOKEN": {
       "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.",
+      "value": ""
+     },
+    "SUDO_USERS": {
+      "description": "User id of users to use this bot."
       "value": ""
     },
     "COMMAND_HAND_LER": {
