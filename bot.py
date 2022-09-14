@@ -109,7 +109,7 @@ async def on_view_blacklist(event):
         for trigger in all_blacklisted:
             OUT_STR += f"👉 `{trigger}` \n"
     else:
-        OUT_STR = f"__No Blacklists found. Start saving using__`{hl}addblacklist`"
+        OUT_STR = f"__No Blacklists found. Start saving using__`/addblacklist`"
     if len(OUT_STR) > 4095:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
