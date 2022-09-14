@@ -23,7 +23,7 @@
       "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.",
       "value": ""
     },
-    "USERS": {
+    "SUDO_USERS": {
       "description": "User id of users to use this bot.",
       "value": ""
     },
