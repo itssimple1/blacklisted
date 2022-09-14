@@ -2,15 +2,11 @@
   "name": "Blacklist Bot",
   "description": "A bot to blacklist words on telegram.",
   "keywords": [
-    "telegram",
-    "userbot",
     "plugin",
-    "telethon",
-    "hellbot",
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/The-HellBot/HellBot/",
+  "repository": "https://github.com/The-HellBot/HellBot",
   "env": {
     "API_ID": {
       "description": "Get this value from my.telegram.org",
