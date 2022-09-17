@@ -1,9 +1,9 @@
 from os import environ
 
 
-def sudo_users():
+def sudo_users(user: str):
     users = []
-    _sudo_ = environ.get("SUDO_USERS", None)
+    _sudo_ = user
     if _sudo_:
         _list_ = _sudo_.split(" ")
         for sudo in _list_:
@@ -16,4 +16,5 @@ API_ID = environ.get("API_ID", 0)
 API_HASH = environ.get("API_HASH", None)
 BOT_TOKEN = environ.get("BOT_TOKEN", None)
 DB_URI = environ.get("DATABASE_URL", None)
-USERS = sudo_users()
+user = environ.get("SUDO_USERS", None)
+USERS = sudo_users(user)
