@@ -54,7 +54,7 @@ async def start_bot():
     except Exception as e:
         print(str(e))
 
-USERS = sudo_users(user)
+USERS = SUDO_USERS
 
 
 @in_handler(incoming=True)
