@@ -3,7 +3,7 @@ from os import environ
 
 def sudo_users():
     users = []
-    _sudo_ = SUDO_USERS
+    _sudo_ = environ.get("SUDO_USERS", None)
     if _sudo_:
         _list_ = _sudo_.split(" ")
         for sudo in _list_:
