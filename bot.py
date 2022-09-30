@@ -1,8 +1,8 @@
 import io
 import re
-import sys
+# import sys
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from pyrogram.types import Message
 
 import asyncio
@@ -26,6 +26,9 @@ async def start_bot():
         print("Bot Started !!")
     except Exception as e:
         print(str(e))
+    await idle()
+    print("Stopping bot...")
+    await bot.stop()
 
 @bot.on_message((filters.bot | filters.text) &  filters.incoming)
 async def on_new_message(event: Message):
@@ -94,12 +97,4 @@ async def on_view_blacklist(c: bot, m: Message):
         await m.reply_text(OUT_STR)
 
 
-bot.loop.run_until_complete(start_bot())
-
-if len(sys.argv) not in (1, 3, 4):
-    bot.disconnect()
-else:
-    try:
-        bot.run_until_disconnected()
-    except ConnectionError:
-        pass
+asyncio.run(start_bot())
