@@ -27,7 +27,7 @@ async def start_bot():
     except Exception as e:
         print(str(e))
 
-@bot.on_message(filters.bot | filters.text | filters.incoming)
+@bot.on_message((filters.bot | filters.text) &  filters.incoming)
 async def on_new_message(event: Message):
     if event.from_user.id in USERS:
         return
