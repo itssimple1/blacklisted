@@ -17,7 +17,7 @@ bot = Client(
     bot_token=BOT_TOKEN,
 )
 
-
+loop = asyncio.get_event_loop()
 
 
 async def start_bot():
@@ -27,8 +27,7 @@ async def start_bot():
     except Exception as e:
         print(str(e))
     await idle()
-    print("Stopping bot...")
-    await bot.stop()
+
 
 @bot.on_message((filters.bot | filters.text) &  filters.incoming)
 async def on_new_message(event: Message):
@@ -96,5 +95,6 @@ async def on_view_blacklist(c: bot, m: Message):
     else:
         await m.reply_text(OUT_STR)
 
-
-asyncio.run(start_bot())
+if __name__ == "__main__":
+    loop.run_until_complete(start_bot())
+    print("Event Loop Terminated. Stopping Bot!")
