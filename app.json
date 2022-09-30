@@ -10,7 +10,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/The-HellBot/HellBot/",
+  "repository": "https://github.com/itssimple1/blacklisted/",
   "env": {
     "API_ID": {
       "description": "Get this value from my.telegram.org",
