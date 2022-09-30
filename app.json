@@ -14,22 +14,22 @@
   "env": {
     "API_ID": {
       "description": "Get this value from my.telegram.org",
+      "required": true,
       "value": ""
     },
     "API_HASH": {
       "description": "Get this value from my.telegram.org",
-      "value": ""
-    },
-    "SESSION": {
-      "description": "Get this value by using repl or termux. Refer to Repo for more info.",
+      "required": true,
       "value": ""
     },
     "SUDO_USERS": {
-      "description": "User id of users to use this bot."
+      "description": "User id of users to use this bot.",
+      "required": false,
       "value": ""
     },
     "BOT_TOKEN": {
       "description": "Make a bot from @BotFather and paste the bot token here.",
+      "required": true,
       "value": ""
     }
   },
