@@ -11,7 +11,7 @@ from db import get_chat_blacklist, rm_from_blacklist, add_to_blacklist
 
 
 bot = Client(
-    session="HellBot",
+    "HellBot",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
