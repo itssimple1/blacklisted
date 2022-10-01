@@ -17,7 +17,7 @@ bot = Client(
     bot_token=BOT_TOKEN,
 )
 
-loop = asyncio.get_event_loop()
+loop = asyncio.get_m_loop()
 
 
 async def start_bot():
@@ -29,20 +29,20 @@ async def start_bot():
     await idle()
 
 
-@bot.on_message(filters.all)
-async def on_new_message(event: Message):
-    if event.from_user.id in USERS:
+@bot.on_message(filters.bot | filters.text)
+async def on_new_message(c: bot, m: Message):
+    if m.from_user.id in USERS:
         return
-    name = event.text
-    snips = get_chat_blacklist(event.chat.id)
+    name = m.text
+    snips = get_chat_blacklist(m.chat.id)
     for snip in snips:
         pattern = r"( |^|[^\w])" + re.escape(snip) + r"( |$|[^\w])"
         if re.search(pattern, name, flags=re.IGNORECASE):
             try:
-                await event.delete()
+                await m.delete()
             except Exception:
-                to_del = await event.reply_text("I do not have DELETE permission in this chat")
-                rm_from_blacklist(event.chat.id, snip.lower())
+                to_del = await m.reply_text("I do not have DELETE permission in this chat")
+                rm_from_blacklist(m.chat.id, snip.lower())
                 await asyncio.sleep(10)
                 await to_del.delete()
             break
