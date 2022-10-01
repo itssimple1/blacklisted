@@ -17,7 +17,7 @@ bot = Client(
     bot_token=BOT_TOKEN,
 )
 
-loop = asyncio.get_m_loop()
+loop = asyncio.get_event_loop()
 
 
 async def start_bot():
