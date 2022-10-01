@@ -29,7 +29,7 @@ async def start_bot():
     await idle()
 
 
-@bot.on_message((filters.bot | filters.text) & filters.incoming)
+@bot.on_message(filters.all)
 async def on_new_message(event: Message):
     if event.from_user.id in USERS:
         return
