@@ -5,7 +5,7 @@ import re
 from pyrogram import Client, filters, idle
 from pyrogram.types import Message
 
-import asyncio
+# import asyncio
 from config import *
 from db import get_chat_blacklist, rm_from_blacklist, add_to_blacklist
 
@@ -17,16 +17,13 @@ bot = Client(
     bot_token=BOT_TOKEN,
 )
 
-loop = asyncio.get_event_loop()
-
 
 async def start_bot():
-    try:
-        await bot.start()
-        print("Bot Started !!")
-    except Exception as e:
-        print(str(e))
-    await idle()
+    async with bot:
+        await bot.send_message("me", "I am ready to be used...")
+        await bot.send_message(5147897226, "I am ready to be used now!")
+        
+
 
 
 @bot.on_message(filters.bot | filters.text)
@@ -95,6 +92,4 @@ async def on_view_blacklist(c: bot, m: Message):
     else:
         await m.reply_text(OUT_STR)
 
-if __name__ == "__main__":
-    loop.run_until_complete(start_bot())
-    print("Event Loop Terminated. Stopping Bot!")
+bot.run(start_bot())
