@@ -2,7 +2,7 @@ import io
 import re
 # import sys
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from pyrogram.types import Message
 
 import asyncio
@@ -19,6 +19,7 @@ bot = Client(
 
 
 async def start_bot():
+    await bot.start()
     async with bot:
         try:
             if CHANNEL_ID:
@@ -27,9 +28,11 @@ async def start_bot():
             await bot.send_message(OWNER_ID, "I am ready to be used now!")
         except Exception:
             pass
+    await idle()
+    
         
 
-
+loop = asyncio.get_event_loop
 
 @bot.on_message(filters.bot | filters.text)
 async def on_new_message(c: bot, m: Message):
@@ -97,4 +100,6 @@ async def on_view_blacklist(c: bot, m: Message):
     else:
         await m.reply_text(OUT_STR)
 
-bot.run(start_bot())
+if __name__ == "__main__":
+    loop.run_until_complete(start_bot())
+    print("Event Loop Terminated. Stopping Bot!")
