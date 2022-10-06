@@ -2,10 +2,10 @@ import io
 import re
 # import sys
 
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from pyrogram.types import Message
 
-# import asyncio
+import asyncio
 from config import *
 from db import get_chat_blacklist, rm_from_blacklist, add_to_blacklist
 
@@ -20,8 +20,13 @@ bot = Client(
 
 async def start_bot():
     async with bot:
-        await bot.send_message("me", "I am ready to be used...")
-        await bot.send_message(5147897226, "I am ready to be used now!")
+        try:
+            if CHANNEL_ID:
+                await bot.send_message(CHANNEL_ID, "I am ready to be used...")
+
+            await bot.send_message(OWNER_ID, "I am ready to be used now!")
+        except Exception:
+            pass
         
 
 

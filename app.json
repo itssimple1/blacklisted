@@ -31,6 +31,16 @@
       "description": "Make a bot from @BotFather and paste the bot token here.",
       "required": true,
       "value": ""
+    },
+    "OWNER_ID": {
+      "description": "Give your id get it from @HELL_ID_BOT",
+      "required": false,
+      "value": ""
+    },
+    "CHANNEL_ID": {
+      "description": "Give the id of your channel or grp which have bot as admin get the id from @HELL_ID_BOT",
+      "required": true,
+      "value": ""
     }
   },
   "addons": [{
