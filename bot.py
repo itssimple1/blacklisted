@@ -32,7 +32,6 @@ async def start_bot():
     
         
 
-loop = asyncio.get_event_loop
 
 @bot.on_message(filters.bot | filters.text)
 async def on_new_message(c: bot, m: Message):
@@ -101,5 +100,5 @@ async def on_view_blacklist(c: bot, m: Message):
         await m.reply_text(OUT_STR)
 
 if __name__ == "__main__":
-    loop.run_until_complete(start_bot())
+    asyncio.run(start_bot())
     print("Event Loop Terminated. Stopping Bot!")
