@@ -21,17 +21,14 @@ bot = Client(
 async def start_bot():
     await bot.start()
     async with bot:
-        try:
-            if CHANNEL_ID:
-                await bot.send_message(CHANNEL_ID, "I am ready to be used...")
+        if CHANNEL_ID:
+            await bot.send_message(CHANNEL_ID, "I am ready to be used...")
 
-            await bot.send_message(OWNER_ID, "I am ready to be used now!")
-        except Exception:
-            pass
+        await bot.send_message(OWNER_ID, "I am ready to be used now!") # Let it thorught error so I can fix
     await idle()
     
-        
 
+        
 
 @bot.on_message(filters.bot | filters.text)
 async def on_new_message(c: bot, m: Message):
