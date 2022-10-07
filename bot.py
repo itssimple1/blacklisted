@@ -44,7 +44,7 @@ async def on_new_message(c: bot, m: Message):
 
 
 @bot.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
-async def on_add_black_list(m: Message):
+async def on_add_black_list(_, m: Message):
     if m.from_user.id not in USERS:
         return
     text = m.text.pattern_match.group(1)
@@ -55,7 +55,7 @@ async def on_add_black_list(m: Message):
 
 
 @bot.on_message(filters.command(["remove"],["$", "!", "/", "?", "."]))
-async def on_delete_blacklist(m: Message):
+async def on_delete_blacklist(_, m: Message):
     if m.from_user.id not in USERS:
         return
     text = m.text.pattern_match.group(1)
