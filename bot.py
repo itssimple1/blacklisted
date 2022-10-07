@@ -88,9 +88,4 @@ async def on_view_blacklist(c: bot, m: Message):
 
 
         
-try:
-    bot.run()
-except ConnectionError:
-    bot.restart()
-    idle()
-    bot.stop()
+# bot.run()
