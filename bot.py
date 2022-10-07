@@ -18,16 +18,6 @@ bot = Client(
 )
 
 
-async def start_bot():
-    await bot.start()
-    async with bot:
-        if CHANNEL_ID:
-            await bot.send_message(CHANNEL_ID, "I am ready to be used...")
-
-        await bot.send_message(OWNER_ID, "I am ready to be used now!") # Let it thorught error so I can fix
-    await idle()
-    
-
         
 
 @bot.on_message(filters.bot | filters.text)
@@ -96,6 +86,7 @@ async def on_view_blacklist(c: bot, m: Message):
     else:
         await m.reply_text(OUT_STR)
 
-if __name__ == "__main__":
-    asyncio.run(start_bot())
-    print("Event Loop Terminated. Stopping Bot!")
+
+        
+        
+bot.run()
