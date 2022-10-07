@@ -22,8 +22,9 @@ bot = Client(
 
 @bot.on_message(filters.bot | filters.text)
 async def on_new_message(c: bot, m: Message):
-    if m.from_user.id in USERS:
-        return
+    if USERS:
+        if m.from_user.id in USERS:
+            return
     name = m.text
     snips = get_chat_blacklist(m.chat.id)
     for snip in snips:
