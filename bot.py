@@ -3,9 +3,9 @@ import re
 # import sys
 
 from pyrogram import Client, filters, idle
-from pyrogram.enums import ChatMemberStatus as cms
+from pyrogram.enums import ChatMemberStatus as cms, ChatType as CT
 from pyrogram.types import Message
-from pyrogram.errors import RPCError, UserNotParticipant
+from pyrogram.errors import RPCError, UserNotParticipant, MessageDeleteForbidden
 
 import asyncio
 from config import *
@@ -44,6 +44,34 @@ async def on_new_message(c: bot, m: Message):
             break
 
 
+@bot.on_message(filters.command(["start"],["$", "!", "/", "?", "."]))
+async def start(c: bot, m: Message):
+    if m.chat.type is CT.BOT:
+        pass
+    if m.chat.type is CT.PRIVATE:
+        await bot.send_message(
+            m.chat.id,
+            f"Hi {m.from_user.mention}, I am a simple bot to create black list. Do `/help` to see what I can do"
+        )
+    await m.reply_text("I am alive ;)")
+
+@bot.on_message(filters.command(["help"],["$", "!", "/", "?", "."]))
+async def help(_, m: Message):
+    txt = """
+`/add` - to add word in black list
+`/remove` - to remove word from black list
+`/blacklists` - to show the list of current blacklist words
+
+***PREFIXES ARE `$`, `!`, `/`, `?`, `.`***
+You can also use all the prefixes in place of `/`
+"""
+    to_del = await m.reply_text(txt, quote=True)
+    try:
+        if m.chat.type not in [CT.PRIVATE, CT.BOT]:
+            asyncio.sleep(20)
+            await to_del.delete()
+    except MessageDeleteForbidden:
+        pass
 
 @bot.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
 async def on_add_black_list(_, m: Message):
