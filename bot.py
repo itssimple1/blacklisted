@@ -24,7 +24,7 @@ def startup():
     idle()
 
 
-@Client.on_message(filters.bot | filters.text)
+@bot.on_message(filters.bot | filters.text)
 async def on_new_message(_, m: Message):
     if USERS:
         if m.from_user.id in USERS:
@@ -44,7 +44,7 @@ async def on_new_message(_, m: Message):
             break
 
 
-@Client.on_message(filters.command(["start"],["$", "!", "/", "?", "."]))
+@bot.on_message(filters.command(["start"],["$", "!", "/", "?", "."]))
 async def start(_, m: Message):
     if m.chat.type is CT.BOT:
         pass
@@ -54,7 +54,7 @@ async def start(_, m: Message):
         )
     await m.reply_text("I am alive ;)")
 
-@Client.on_message(filters.command(["help"],["$", "!", "/", "?", "."]))
+@bot.on_message(filters.command(["help"],["$", "!", "/", "?", "."]))
 async def help(_, m: Message):
     txt = """
 `/add` - to add word in black list
@@ -72,7 +72,7 @@ You can also use all the prefixes in place of `/`
     except MessageDeleteForbidden:
         pass
 
-@Client.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
+@bot.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
 async def on_add_black_list(_, m: Message):
     user = m.from_user.id
     try:
@@ -92,7 +92,7 @@ async def on_add_black_list(_, m: Message):
     await m.reply_text(f"__Added__ `{to_blacklist}` __triggers to the blacklist in the current chat.__")
 
 
-@Client.on_message(filters.command(["remove"],["$", "!", "/", "?", "."]))
+@bot.on_message(filters.command(["remove"],["$", "!", "/", "?", "."]))
 async def on_delete_blacklist(_, m: Message):
     user = m.from_user.id
     try:
@@ -116,7 +116,7 @@ async def on_delete_blacklist(_, m: Message):
 
 
 
-@Client.on_message(filters.command(["listblack", "blacklists", "listblacklist"],["$", "!", "/", "?", "."]))
+@bot.on_message(filters.command(["listblack", "blacklists", "listblacklist"],["$", "!", "/", "?", "."]))
 async def on_view_blacklist(_, m: Message):
     all_blacklisted = get_chat_blacklist(m.chat.id)
     if len(all_blacklisted) > 0:
