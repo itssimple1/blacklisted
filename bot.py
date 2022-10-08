@@ -25,7 +25,7 @@ def startup():
 
 
 @bot.on_message(filters.bot | filters.text)
-async def on_new_message(c: bot, m: Message):
+async def on_new_message(_, m: Message):
     if USERS:
         if m.from_user.id in USERS:
             return
@@ -45,11 +45,11 @@ async def on_new_message(c: bot, m: Message):
 
 
 @bot.on_message(filters.command(["start"],["$", "!", "/", "?", "."]))
-async def start(c: bot, m: Message):
+async def start(_, m: Message):
     if m.chat.type is CT.BOT:
         pass
     if m.chat.type is CT.PRIVATE:
-        await bot.send_message(
+        await bot.send(
             m.chat.id,
             f"Hi {m.from_user.mention}, I am a simple bot to create black list. Do `/help` to see what I can do"
         )
@@ -118,7 +118,7 @@ async def on_delete_blacklist(_, m: Message):
 
 
 @bot.on_message(filters.command(["listblack", "blacklists", "listblacklist"],["$", "!", "/", "?", "."]))
-async def on_view_blacklist(c: bot, m: Message):
+async def on_view_blacklist(_, m: Message):
     all_blacklisted = get_chat_blacklist(m.chat.id)
     if len(all_blacklisted) > 0:
         OUT_STR = "**Blacklists in the Current Chat:**\n"
