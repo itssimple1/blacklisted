@@ -24,7 +24,7 @@ def startup():
     idle()
 
 
-@bot.on_message(filters.bot | filters.text)
+@Client.on_message(filters.bot | filters.text)
 async def on_new_message(_, m: Message):
     if USERS:
         if m.from_user.id in USERS:
@@ -44,18 +44,17 @@ async def on_new_message(_, m: Message):
             break
 
 
-@bot.on_message(filters.command(["start"],["$", "!", "/", "?", "."]))
+@Client.on_message(filters.command(["start"],["$", "!", "/", "?", "."]))
 async def start(_, m: Message):
     if m.chat.type is CT.BOT:
         pass
     if m.chat.type is CT.PRIVATE:
-        await bot.send(
-            m.chat.id,
+        await m.reply_text(
             f"Hi {m.from_user.mention}, I am a simple bot to create black list. Do `/help` to see what I can do"
         )
     await m.reply_text("I am alive ;)")
 
-@bot.on_message(filters.command(["help"],["$", "!", "/", "?", "."]))
+@Client.on_message(filters.command(["help"],["$", "!", "/", "?", "."]))
 async def help(_, m: Message):
     txt = """
 `/add` - to add word in black list
@@ -73,7 +72,7 @@ You can also use all the prefixes in place of `/`
     except MessageDeleteForbidden:
         pass
 
-@bot.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
+@Client.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
 async def on_add_black_list(_, m: Message):
     user = m.from_user.id
     try:
@@ -93,7 +92,7 @@ async def on_add_black_list(_, m: Message):
     await m.reply_text(f"__Added__ `{to_blacklist}` __triggers to the blacklist in the current chat.__")
 
 
-@bot.on_message(filters.command(["remove"],["$", "!", "/", "?", "."]))
+@Client.on_message(filters.command(["remove"],["$", "!", "/", "?", "."]))
 async def on_delete_blacklist(_, m: Message):
     user = m.from_user.id
     try:
@@ -117,7 +116,7 @@ async def on_delete_blacklist(_, m: Message):
 
 
 
-@bot.on_message(filters.command(["listblack", "blacklists", "listblacklist"],["$", "!", "/", "?", "."]))
+@Client.on_message(filters.command(["listblack", "blacklists", "listblacklist"],["$", "!", "/", "?", "."]))
 async def on_view_blacklist(_, m: Message):
     all_blacklisted = get_chat_blacklist(m.chat.id)
     if len(all_blacklisted) > 0:
