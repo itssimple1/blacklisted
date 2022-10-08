@@ -3,7 +3,9 @@ import re
 # import sys
 
 from pyrogram import Client, filters, idle
+from pyrogram.enums import ChatMemberStatus as cms
 from pyrogram.types import Message
+from pyrogram.errors import RPCError, UserNotParticipant
 
 import asyncio
 from config import *
@@ -45,7 +47,16 @@ async def on_new_message(c: bot, m: Message):
 
 @bot.on_message(filters.command(["add"],["$", "!", "/", "?", "."]))
 async def on_add_black_list(_, m: Message):
-    if m.from_user.id not in USERS:
+    user = m.from_user.id
+    try:
+        member = await m.chat.get_member(user)
+    except UserNotParticipant:
+        await m.reply_text("***HUH? user is not participan, then who activated the cmd?***")
+    except RPCError as e:
+        await m.reply_text(f"Got error {e}")
+
+    if user not in USERS and member.status not in [cms.OWNER, cms.ADMINISTRATOR]:
+        m.reply_text("Sorry! You can't do that.")
         return
     text = m.text.pattern_match.group(1)
     to_blacklist = list({trigger.strip() for trigger in text.split("\n") if trigger.strip()})
@@ -56,7 +67,16 @@ async def on_add_black_list(_, m: Message):
 
 @bot.on_message(filters.command(["remove"],["$", "!", "/", "?", "."]))
 async def on_delete_blacklist(_, m: Message):
-    if m.from_user.id not in USERS:
+    user = m.from_user.id
+    try:
+        member = await m.chat.get_member(user)
+    except UserNotParticipant:
+        await m.reply_text("***HUH? user is not participan, then who activated the cmd?***")
+    except RPCError as e:
+        await m.reply_text(f"Got error {e}")
+
+    if user not in USERS and member.status not in [cms.OWNER, cms.ADMINISTRATOR]:
+        m.reply_text("Sorry! You can't do that.")
         return
     text = m.text.pattern_match.group(1)
     to_unblacklist = list({trigger.strip() for trigger in text.split("\n") if trigger.strip()})
