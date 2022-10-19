@@ -133,7 +133,7 @@ async def main():
         else:
             await m.reply_text(OUT_STR)
             
-    idle()
+    await idle()
     print("Stoping the bot")
     await bot.stop()
 
