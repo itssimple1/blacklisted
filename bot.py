@@ -134,8 +134,6 @@ async def main():
             await m.reply_text(OUT_STR)
             
     await idle()
-    print("Stoping the bot")
-    await bot.stop()
 
 
 bot.run(main())
