@@ -135,7 +135,7 @@ async def main():
             
     idle()
     print("Stoping the bot")
-    awiat bot.stop()
+    await bot.stop()
 
 
 bot.run(main())
