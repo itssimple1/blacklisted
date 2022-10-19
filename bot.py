@@ -18,7 +18,7 @@ bot = Client(
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
 )
-async def main()
+async def main():
     await bot.start()
     
     @bot.on_message(filters.bot | filters.text)
