@@ -21,7 +21,7 @@ bot = Client(
 
 
 
-@bot.on_message(filters.bot | filters.text)
+@bot.on_message(filters.bot | filters.all)
 async def on_new_message(_, m: Message):
     if USERS:
         if m.from_user.id in USERS:
@@ -32,7 +32,9 @@ async def on_new_message(_, m: Message):
         pattern = r"( |^|[^\w])" + re.escape(snip) + r"( |$|[^\w])"
         if re.search(pattern, name, flags=re.IGNORECASE):
             try:
-                await m.delete()
+                if m.from_user.is_bot:
+                    await bot.send_message("Trying to delete bot's message")
+                await m.delete(revoke=True)
             except Exception:
                 to_del = await m.reply_text("I do not have DELETE permission in this chat")
                 rm_from_blacklist(m.chat.id, snip.lower())
